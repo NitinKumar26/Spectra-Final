@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.vidya.spectra">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application
+        android:name=".app.AppController"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Splash Screen -->
+        <activity android:name=".activity.SplashScreen"
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Welcome Activity-->
+        <activity android:name=".activity.WelActivity"
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- Log In Activity -->
+        <activity android:name=".activity.LogInActivity"
+            android:theme="@style/popUpTheme"
+            android:label="@string/log_in_text"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".activity.WelActivity"/>
+
+        <!-- Register Activity -->
+        <activity android:name=".activity.RegisterActivity"
+            android:theme="@style/popUpTheme"
+            android:label="@string/register"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".activity.WelActivity"/>
+
+        <!-- Main Activity -->
+        <activity android:name=".activity.MnActivity"
+            android:theme="@style/AppTheme.NoTitleBar"
+            android:screenOrientation="portrait"/>
+
+        <!-- Gallery Activity-->
+        <activity android:name=".activity.GalleryActivity"
+            android:theme="@style/AppTheme.NoTitleBar"
+            android:parentActivityName=".activity.MnActivity"
+            android:screenOrientation="portrait"/>
+
+        <!-- About Activity -->
+        <activity android:name=".activity.AboutActivity"
+            android:theme="@style/AboutTheme"
+            android:label="@string/about_spectra"
+            android:parentActivityName=".activity.MnActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--Event Activity-->
+        <activity android:name=".activity.EventActivity"
+            android:label="@string/events"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".activity.MnActivity"
+            android:screenOrientation="portrait"
+            />
+
+        <!--Declamation Activity-->
+        <activity android:name=".activity.DeclamationActivity"
+            android:label="@string/declamation"
+            android:theme="@style/AboutTheme"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".activity.EventActivity"
+            />
+
+        <!--Boy Girl Activity-->
+        <activity android:name=".activity.BoyGirlActivity"
+            android:label="@string/boy_girl_label"
+            android:theme="@style/AboutTheme"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".activity.EventActivity"
+            />
+        <!--Lawsuit Activity-->
+        <activity android:name=".activity.LawSuitActivity"
+            android:label="@string/lawsuit_label"
+            android:theme="@style/AboutTheme"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".activity.EventActivity"
+            />
+
+        <!--Radio Show  Activity-->
+        <activity android:name=".activity.RadioShowActivity"
+            android:label="@string/radio_show_label"
+            android:theme="@style/AboutTheme"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".activity.EventActivity"
+            />
+        <!--Membership  Activity-->
+        <activity android:name=".activity.MembershipActivity"
+            android:label="@string/membership"
+            android:theme="@style/popUpTheme"
+            android:screenOrientation="portrait"
+            />
+    </application>
+
+</manifest>

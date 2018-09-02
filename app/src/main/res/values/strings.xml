@@ -1,0 +1,134 @@
+<resources>
+    <string name="app_name">Spectra</string>
+    <string name="spectra_motto">Spectra : Shaping the Ideas</string>
+    <string name="welcome_text">Welcome to Spectra</string>
+    <string name="proud_text">Proud to be Spectarian!</string>
+    <string name="about_spectra">About</string>
+    <string name="log_in_text">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="full_name">Full Name</string>
+    <string name="student_id">Student ID</string>
+    <string name="password">Password</string>
+    <string name="submit">Submit</string>
+    <string name="home">Home</string>
+    <string name="events">Events</string>
+    <string name="gallery">Gallery</string>
+    <string name="membership">Be a Member Now!</string>
+    <string name="about_text">
+       <![CDATA[
+    Spectra is the literary society of Vidya Knowledge Park, the first student oriented society in the campus.
+    ]]>
+        </string>
+
+    <string name="btn_link_to_register">Not a member? Sign up now.</string>
+    <string name="btn_link_to_login">Already registred! Login Me.</string>
+    <string name="welcome">Welcome</string>
+    <string name="btn_logout">Logout</string>
+    <string name="facebook">Facebook</string>
+    <string name="declamation">Declamation</string>
+    <string name="nav_header_title">Spectra</string>
+    <string name="nav_header_subtitle">Shaping the Ideas</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="event_backdrop_title">Featured Events</string>
+    <string name="backdrop_subtitle">Participate to groom yourself.</string>
+    <string name="no_internet">No Internet</string>
+    <string name="rules_regulations">Rules and Regulations</string>
+    <string name="boy_girl_label">It\'s a Boy Girl thing</string>
+    <string name="lawsuit_label">Lawsuit</string>
+    <string name="radio_show_label">Radio Show</string>
+    <string name="rules_declamation"><![CDATA[\u2022 Speech must have been previously  delivered in public by any famous  personalities or
+characters. (Politicians,  actors or speeches in movies etc.)\n
+\u2022 Prior information should be given to the  coordinators.\n
+\u2022 Negative points for Paper reading\n
+\u2022 Speeches are to be max ten minutes in  length.\n
+\u2022 Imitation of the original speaker should  be accurate with the same notion.]]> </string>
+
+    <string name="law_suit_text">When you have confidence like a Lawyer and have the wit like them "Lawsuit" is the event for you.</string>
+    <string name="declamation_text">In this event one has to copy the given speech of a famous personality.</string>
+    <string name="judgment_criteria">Judgment Criteria</string>
+    <string name="judgement_criteria_declamation">
+        \u2022 Presentation (10)\n
+        \u2022 Body language (10)\n
+        \u2022 Costume (05)\n
+        \u2022 Fluency (10)\n
+        \u2022 Imitation (15)\n
+    </string>
+    <string name="judgement_criteria_boy_girl">
+        \u2022 Dialogues (10)\n
+        \u2022 Fluency (10)\n
+        \u2022 Flow of Topic (10)\n
+        \u2022 Logic (10)\n
+        \u2022 Co-ordination (10)\n
+    </string>
+
+    <string name="boy_girl_text">Imitating and copying your favourite actor\'s dialogue, moves and actions, who doesn\'t love it??\n
+    If yes then this event is the best!!</string>
+
+    <string name="rules_boy_girl"><![CDATA[\u2022 Two candidates are required, one boy and one girl.\n
+\u2022 A clip will be played and none has to imitate the actor and the actress.\n
+\u2022 Scores will be given on the basis of the performances of both.]]> </string>
+    <string name="rules_law_suit"><![CDATA[\u2022 This is a team event.(Maximum 2 members)\n
+\u2022 A case would be given and the two opposing teams have to defend their end of bargain.\n
+\u2022 The total time for each case is 10 minutes.\n
+        i) 2 minutes for Prosecutor\n
+        ii) 2 minutes for Defender.\n
+        iii) 4 minutes for Discussion.\n
+        iv) 30 seconds for break.\n
+        v) 1:30 seconds for Conclusion.\n
+\u2022 Judges decisions are final, and they will not be required to explain standing.
+\u2022 Limited Participation, which is done on First Come First Serve Basis.]]> </string>
+
+    <string name="judgement_criteria_law_suit">
+        \u2022 Presentation (10)\n
+        \u2022 Strength of argument (20)\n
+        \u2022 Content/Fluency (10)\n
+        \u2022 Body Language (10)\n
+    </string>
+
+    <string name="radio_show_text">This is a team event in which the participants has to do a radio show. </string>
+    <string name="rules_radio_show"><![CDATA[\u2022 This is a team event of 2 to 5 members.\n
+\u2022 The total time allotted will be 10 minutes.\n
+\u2022 2 songs are allowed to sing(not fully) and musical instruments are allowed.\n
+\u2022 Judges decisions are final, and they will not be required to explain standing.\n
+\u2022 Limited participation, which is done on First Come First Serve Basis.\n
+\u2022 Both English and Hindi can be used.]]> </string>
+
+    <string name="judgement_criteria_radio_show">
+        \u2022 Presentation (10)\n
+        \u2022 Time-Management (10)\n
+        \u2022 Content/Fluency (10)\n
+        \u2022 Voice Modulation (10)\n
+        \u2022 Team Work (10)\n
+    </string>
+
+    <string name="contact_no">Contact Number</string>
+    <string name="participate">Be a Member Now!</string>
+    <string name="mission">Our Mission</string>
+
+
+
+    <string name="event_desc">Event Details</string>
+    
+    <string name="course_prompt">Course Name</string>
+    <string-array name="course_array">
+        <item>Choose Course</item>
+        <item>B.Tech</item>
+        <item>Polytechnic</item>
+        <item>B.fad</item>
+        <item>BBA</item>
+        <item>BCA</item>
+        <item>MBA</item>
+        <item>M.Tech</item>
+        <item>BJMC</item>
+    </string-array>
+    <string name="follow_text">Follow us on!</string>
+    <string name="membership_steps">Submit your membership fee to one of our core member to be a member of Spectra:The Literary Society.</string>
+
+    <string name="goals">Goals of Society </string>
+    <string name="offer">\u2022 To Provide a place of collaboration for English majors, writers, literary artists, and any other students at Vidya Knowledge Park\n\n
+    \u2022 To Provide a forum for club members and other students to share their favorite works of literature in poetry and prose.\n\n
+        \u2022 To Provide a place to share and develop creative works of student\'s own creation.\n
+</string>
+
+</resources>

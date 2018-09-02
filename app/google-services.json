@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "621942103412",
+    "firebase_url": "https://spectra-9a1de.firebaseio.com",
+    "project_id": "spectra-9a1de",
+    "storage_bucket": "spectra-9a1de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:621942103412:android:b1fd554c53d5ef1c",
+        "android_client_info": {
+          "package_name": "com.example.nitin.spectra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "621942103412-2fkshkbqph0h7g5udcemhesrfovassjd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nitin.spectra",
+            "certificate_hash": "e2859028a45d153a1b46e9be07ee87509fe3efe9"
+          }
+        },
+        {
+          "client_id": "621942103412-0n2f59mbs5pop6tqqe5h76l74hkhci30.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6OQKSAeNNJuI5K6Dqp3uN9L2fStrUhL8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "621942103412-0n2f59mbs5pop6tqqe5h76l74hkhci30.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

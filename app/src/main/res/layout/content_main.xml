@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="6dp">
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/proud_text"
+                android:textColor="@color/colorAccent"
+                android:layout_margin="8dp"
+                android:textSize="16sp"
+                android:layout_gravity="center"/>
+
+
+
+
+        <include layout="@layout/recycler_view_main"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/goals"
+            android:textColor="@color/colorAccent"
+            android:layout_margin="8dp"
+            android:textSize="16sp"
+            android:layout_gravity="center"/>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textStyle="normal"
+                android:text="@string/offer"/>
+
+        </android.support.v7.widget.CardView>
+
+        <Button
+            android:id="@+id/membership_button"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="@string/membership"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/rounded_corners"
+            android:textColor="@color/white_color"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

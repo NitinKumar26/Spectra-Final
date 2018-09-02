@@ -1,0 +1,46 @@
+<android.support.v4.widget.NestedScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        card_view:cardCornerRadius="8dp">
+
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/about_text"
+        android:textColor="@color/text_black_light"
+        android:layout_margin="12dp"
+        android:textSize="16sp"/>
+
+    </android.support.v7.widget.CardView>
+
+        <ImageView
+            android:id="@+id/image_about"
+            android:contentDescription="@string/about_spectra"
+            android:layout_width="360dp"
+            android:layout_height="271dp"
+            android:layout_below="@+id/card_view"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/man" />
+
+    </RelativeLayout>
+
+
+
+</android.support.v4.widget.NestedScrollView>
