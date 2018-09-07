@@ -29,7 +29,6 @@ public class SlideshowDialogFragment extends DialogFragment {
     private String TAG = SlideshowDialogFragment.class.getSimpleName();
     private ArrayList<Image> images;
     private ViewPager viewPager;
-    private MyViewPagerAdapter myViewPagerAdapter;
     private TextView lblCount, lblTitle, lblDate;
     private int selectedPosition = 0;
 
@@ -44,7 +43,7 @@ public class SlideshowDialogFragment extends DialogFragment {
         View v = inflater.inflate(R.layout.fragment_image_slider, container, false);
         viewPager = (ViewPager) v.findViewById(R.id.viewpager);
         lblCount = (TextView) v.findViewById(R.id.lbl_count);
-        lblTitle = (TextView) v.findViewById(R.id.title);
+        lblTitle = (TextView) v.findViewById(R.id.title_image);
         lblDate = (TextView) v.findViewById(R.id.date);
 
         images = (ArrayList<Image>) getArguments().getSerializable("images");
@@ -53,7 +52,7 @@ public class SlideshowDialogFragment extends DialogFragment {
         Log.e(TAG, "position: " + selectedPosition);
         Log.e(TAG, "images size: " + images.size());
 
-        myViewPagerAdapter = new MyViewPagerAdapter();
+        MyViewPagerAdapter myViewPagerAdapter = new MyViewPagerAdapter();
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
@@ -88,8 +87,8 @@ public class SlideshowDialogFragment extends DialogFragment {
 
     private void displayMetaInfo(int position) {
         lblCount.setText((position + 1) + " of " + images.size());
-
         Image image = images.get(position);
+        lblTitle.setText(image.getName());
 
 
     }
@@ -115,6 +114,7 @@ public class SlideshowDialogFragment extends DialogFragment {
             View view = layoutInflater.inflate(R.layout.image_fullscreen_preview, container, false);
 
             ImageView imageViewPreview = (ImageView) view.findViewById(R.id.image_preview);
+
 
             Image image = images.get(position);
             RequestOptions requestOptions = new RequestOptions();

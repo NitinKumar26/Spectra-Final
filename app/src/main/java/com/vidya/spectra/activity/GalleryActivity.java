@@ -63,6 +63,7 @@ public class GalleryActivity extends AppCompatActivity {
         RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(mAdapter);
 
         recyclerView.addOnItemTouchListener(new GalleryAdapter.RecyclerTouchListener(getApplicationContext(), recyclerView, new GalleryAdapter.ClickListener() {
@@ -105,6 +106,7 @@ public class GalleryActivity extends AppCompatActivity {
                                 JSONObject object = response.getJSONObject(i);
                                 Image image = new Image();
                                 image.setUrl(object.getString("url"));
+                                image.setName(object.getString("name"));
                                 images.add(image);
                             } catch (JSONException e) {
                                 Log.e(TAG, "Json parsing error: " + e.getMessage());

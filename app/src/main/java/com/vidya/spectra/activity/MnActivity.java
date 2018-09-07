@@ -88,7 +88,7 @@ public class MnActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_main);
         eventList = new ArrayList<>();
         adapter = new MainAdapter(MnActivity.this,eventList);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(MnActivity.this,LinearLayoutManager.HORIZONTAL,true);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this,1,LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
