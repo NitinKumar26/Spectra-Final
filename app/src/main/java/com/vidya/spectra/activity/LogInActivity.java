@@ -1,9 +1,5 @@
 package com.vidya.spectra.activity;
 
-/**
- * Author: Nitin Kumar
- */
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +18,6 @@ import android.widget.Toast;
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONException;
@@ -51,11 +46,11 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-        inputStudent_id = (EditText) findViewById(R.id.student_id_login);
-        inputPassword = (EditText) findViewById(R.id.password_login);
-        Button btnLogin = (Button) findViewById(R.id.button_login);
-        final LinearLayout noInternet = (LinearLayout)findViewById(R.id.no_internet_login);
-        final RelativeLayout loginLayout = (RelativeLayout) findViewById(R.id.login_layout);
+        inputStudent_id = findViewById(R.id.student_id_login);
+        inputPassword = findViewById(R.id.password_login);
+        Button btnLogin = findViewById(R.id.button_login);
+        final LinearLayout noInternet = findViewById(R.id.no_internet_login);
+        final RelativeLayout loginLayout = findViewById(R.id.login_layout);
         noInternet.setVisibility(View.GONE);
 
         if (!isNetworkAvailable()){
@@ -98,7 +93,6 @@ public class LogInActivity extends AppCompatActivity {
                         } else {
 
                             Toast.makeText(getApplicationContext(), "No Internet", Toast.LENGTH_LONG).show();
-                            ;
 
                         }
                     } else {
@@ -121,9 +115,12 @@ public class LogInActivity extends AppCompatActivity {
      * @return True if there is Internet. False if not.
      */
     private boolean isNetworkAvailable() {
+        NetworkInfo activeNetworkInfo = null;
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        if (connectivityManager!=null){
+         activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        }
 
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
@@ -144,7 +141,7 @@ public class LogInActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Login Response: " + response.toString());
+                Log.d(TAG, "Login Response: " + response);
                 hideDialog();
 
                 try {
@@ -206,7 +203,7 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("student_id", student_id);
                 params.put("password", password);
 

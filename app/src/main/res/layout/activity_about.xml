@@ -14,7 +14,6 @@
         android:fitsSystemWindows="true">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
@@ -23,7 +22,6 @@
             android:fitsSystemWindows="true">
 
             <ImageView
-                android:id="@+id/header_image"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:scaleType="centerCrop"

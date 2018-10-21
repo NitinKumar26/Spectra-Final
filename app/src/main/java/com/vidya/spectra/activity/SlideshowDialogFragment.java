@@ -4,6 +4,7 @@ package com.vidya.spectra.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -15,36 +16,34 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.bumptech.glide.request.RequestOptions;
 import com.vidya.spectra.R;
 import com.vidya.spectra.model.Image;
 
 
 public class SlideshowDialogFragment extends DialogFragment {
-    private String TAG = SlideshowDialogFragment.class.getSimpleName();
+    private final String TAG = SlideshowDialogFragment.class.getSimpleName();
     private ArrayList<Image> images;
     private ViewPager viewPager;
-    private TextView lblCount, lblTitle, lblDate;
+    private TextView lblCount;
+    private TextView lblTitle;
     private int selectedPosition = 0;
 
     static SlideshowDialogFragment newInstance() {
-        SlideshowDialogFragment f = new SlideshowDialogFragment();
-        return f;
+        return new SlideshowDialogFragment();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_image_slider, container, false);
-        viewPager = (ViewPager) v.findViewById(R.id.viewpager);
-        lblCount = (TextView) v.findViewById(R.id.lbl_count);
-        lblTitle = (TextView) v.findViewById(R.id.title_image);
-        lblDate = (TextView) v.findViewById(R.id.date);
+        viewPager = v.findViewById(R.id.viewpager);
+        lblCount = v.findViewById(R.id.lbl_count);
+        lblTitle = v.findViewById(R.id.title_image);
+        TextView lblDate = v.findViewById(R.id.date);
 
         images = (ArrayList<Image>) getArguments().getSerializable("images");
         selectedPosition = getArguments().getInt("position");
@@ -67,7 +66,7 @@ public class SlideshowDialogFragment extends DialogFragment {
     }
 
     //	page change listener
-    ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
+    private final ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
 
         @Override
         public void onPageSelected(int position) {
@@ -86,7 +85,7 @@ public class SlideshowDialogFragment extends DialogFragment {
     };
 
     private void displayMetaInfo(int position) {
-        lblCount.setText((position + 1) + " of " + images.size());
+        lblCount.setText((position + 1) +"of" + images.size());
         Image image = images.get(position);
         lblTitle.setText(image.getName());
 
@@ -100,30 +99,28 @@ public class SlideshowDialogFragment extends DialogFragment {
     }
 
     //	adapter
-    public class MyViewPagerAdapter extends PagerAdapter {
+    class MyViewPagerAdapter extends PagerAdapter {
 
         private LayoutInflater layoutInflater;
 
-        public MyViewPagerAdapter() {
+        MyViewPagerAdapter() {
         }
 
+        @NonNull
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        public Object instantiateItem(@NonNull ViewGroup container, int position) {
 
             layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = layoutInflater.inflate(R.layout.image_fullscreen_preview, container, false);
 
-            ImageView imageViewPreview = (ImageView) view.findViewById(R.id.image_preview);
+            ImageView imageViewPreview = view.findViewById(R.id.image_preview);
 
 
             Image image = images.get(position);
-            RequestOptions requestOptions = new RequestOptions();
-            requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
 
             Glide.with(getActivity()).load(image.getUrl())
                     .thumbnail(0.5f)
                     .transition(new DrawableTransitionOptions().crossFade())
-                    .apply(requestOptions)
                     .into(imageViewPreview);
 
             container.addView(view);
@@ -137,13 +134,13 @@ public class SlideshowDialogFragment extends DialogFragment {
         }
 
         @Override
-        public boolean isViewFromObject(View view, Object obj) {
-            return view == ((View) obj);
+        public boolean isViewFromObject(@NonNull View view, @NonNull Object obj) {
+            return view == obj;
         }
 
 
         @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
+        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
             container.removeView((View) object);
         }
     }

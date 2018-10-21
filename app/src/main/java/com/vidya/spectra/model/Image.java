@@ -8,6 +8,8 @@ import java.io.Serializable;
 public class Image implements Serializable{
     private String name;
     private String url;
+    private int height;
+    private int width;
 
     public Image() {
     }
@@ -31,6 +33,14 @@ public class Image implements Serializable{
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
     }
 }
 

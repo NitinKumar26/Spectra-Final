@@ -134,7 +134,6 @@ public class RegisterActivity extends AppCompatActivity {
                               final String password, final String course, final String contact) {
         // Tag used to cancel the request
         String tag_string_req = "req_register";
-
         pDialog.setMessage("Registering ...");
         showDialog();
 
@@ -153,7 +152,6 @@ public class RegisterActivity extends AppCompatActivity {
                         // User successfully stored in MySQL
                         // Now store the user in sqlite
                         String uid = jObj.getString("uid");
-
                         JSONObject user = jObj.getJSONObject("user");
                         String studentID = user.getString("student_id");
                         String name = user.getString("name");

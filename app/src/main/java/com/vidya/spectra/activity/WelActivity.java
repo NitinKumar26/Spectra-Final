@@ -5,20 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.content.AsyncTaskLoader;
 
 import com.vidya.spectra.R;
-
-import java.util.List;
 
 public class WelActivity extends AppCompatActivity {
 
@@ -29,7 +21,7 @@ public class WelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_wel);
 
 
-        Button logInButton= (Button)findViewById(R.id.login_button);
+        Button logInButton= findViewById(R.id.login_button);
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,7 +31,7 @@ public class WelActivity extends AppCompatActivity {
             }
         });
 
-        Button registerButton= (Button)findViewById(R.id.register_button);
+        Button registerButton= findViewById(R.id.register_button);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,10 +53,12 @@ public class WelActivity extends AppCompatActivity {
      * @return True if there is Internet. False if not.
      */
     private boolean isNetworkAvailable() {
+        NetworkInfo activeNetworkInfo = null;
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-
+        if (connectivityManager!=null) {
+            activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        }
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 

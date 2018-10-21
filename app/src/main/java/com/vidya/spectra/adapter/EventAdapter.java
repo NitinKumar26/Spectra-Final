@@ -1,6 +1,7 @@
 package com.vidya.spectra.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,17 +18,17 @@ import java.util.List;
 
 public class EventAdapter  extends RecyclerView.Adapter<EventAdapter.MyViewHolder> {
 
-    private Context mContext;
-    private List<Event> eventList;
+    private final Context mContext;
+    private final List<Event> eventList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title;
-        public ImageView thumbnail;
+        final TextView title;
+        final ImageView thumbnail;
 
-        public MyViewHolder(View view) {
+        MyViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.title);
-            thumbnail = (ImageView) view.findViewById(R.id.thumbnail_events);
+            title = view.findViewById(R.id.title);
+            thumbnail = view.findViewById(R.id.thumbnail_events);
         }
     }
 
@@ -37,8 +38,9 @@ public class EventAdapter  extends RecyclerView.Adapter<EventAdapter.MyViewHolde
         this.eventList = eventList;
     }
 
+    @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.event_card, parent, false);
 
@@ -46,7 +48,7 @@ public class EventAdapter  extends RecyclerView.Adapter<EventAdapter.MyViewHolde
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         Event album = eventList.get(position);
         holder.title.setText(album.getName());
         // loading album cover using Glide library

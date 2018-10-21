@@ -1,4 +1,4 @@
-package com.vidya.nitin.spectra;
+package com.vidya.spectra;
 
 import org.junit.Test;
 

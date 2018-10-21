@@ -1,4 +1,4 @@
-package com.vidya.nitin.spectra;
+package com.vidya.spectra;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

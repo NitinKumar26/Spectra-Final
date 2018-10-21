@@ -1,89 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
 
     <RelativeLayout
-    android:id="@+id/register_layout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_margin="16dp"
-    android:gravity="center">
-
-    <LinearLayout
-        android:id="@+id/input_layout"
+        android:id="@+id/register_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="20dp">
+        android:layout_margin="16dp"
+        android:gravity="center">
 
-
-        <EditText
-            android:id="@+id/input_student_id_register"
+        <LinearLayout
+            android:id="@+id/input_layout"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:ellipsize="start"
-            android:hint="@string/student_id"
-            android:inputType="number"
-            android:maxLength="8"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="20dp">
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp">
 
+                <EditText
+                    android:id="@+id/input_student_id_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:drawablePadding="4dp"
+                    android:drawableStart="@drawable/ic_id_card"
+                    android:ellipsize="start"
+                    android:hint="@string/student_id"
+                    android:inputType="number"
+                    android:maxLength="8"/>
 
-        <EditText
-            android:id="@+id/input_name_register"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:ellipsize="start"
-            android:hint="@string/full_name"
-            android:inputType="textPersonName" />
+            </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <EditText
+                    android:id="@+id/input_name_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:drawablePadding="4dp"
+                    android:drawableStart="@drawable/ic_student"
+                    android:ellipsize="start"
+                    android:hint="@string/full_name"
+                    android:inputType="textPersonName" />
 
+            </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/input_email_register"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:inputType="textEmailAddress"
-            android:ellipsize="start"
-            android:hint="@string/email" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
+                <EditText
+                    android:id="@+id/input_email_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:inputType="textEmailAddress"
+                    android:ellipsize="start"
+                    android:hint="@string/email"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="4dp"/>
 
-
-            <EditText
-                android:id="@+id/input_password_register"
+            </android.support.design.widget.TextInputLayout>
+            <Spinner
+                android:id="@+id/input_course"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_margin="10dp"
-                android:inputType="textPassword"
-                android:ellipsize="start"
-                android:hint="@string/password"
-                android:padding="4dp"
-                android:maxLength="20"/>
+                android:entries="@array/course_array"
+                android:prompt="@string/course_prompt"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <EditText
+                    android:id="@+id/input_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:drawableStart="@drawable/ic_local_phone_black_24dp"
+                    android:ellipsize="start"
+                    android:hint="@string/contact_no"
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:padding="4dp" />
+
+            </android.support.design.widget.TextInputLayout>
 
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
-    </LinearLayout>
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_below="@+id/input_layout"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/rounded_corners"
-        android:text="@string/register"
-        android:textColor="@color/white_color"
-        android:layout_margin="20dp"
-        />
-</RelativeLayout>
+                <EditText
+                    android:id="@+id/input_password_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:inputType="textPassword"
+                    android:ellipsize="start"
+                    android:hint="@string/password"
+                    android:drawableStart="@drawable/ic_key"
+                    android:padding="4dp"
+                    android:maxLength="20"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_below="@+id/input_layout"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/rounded_corners"
+            android:text="@string/register"
+            android:textColor="@color/white_color"
+            android:layout_margin="10dp"
+            />
+    </RelativeLayout>
 
 
     <LinearLayout
@@ -94,7 +147,6 @@
         android:layout_margin="20dp">
         <ImageView
             android:contentDescription="@string/register"
-            android:id="@+id/empty_state"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:src="@drawable/cartoon"

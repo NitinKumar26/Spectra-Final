@@ -22,7 +22,6 @@
                 android:text="@string/gallery"
                 android:layout_gravity="center"
                 android:textSize="18sp"
-                android:id="@+id/toolbar_title"
                 android:textColor="@color/white_color"/>
         </android.support.v7.widget.Toolbar>
 

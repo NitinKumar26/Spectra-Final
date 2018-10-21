@@ -2,6 +2,7 @@ package com.vidya.spectra.adapter;
 
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -9,10 +10,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
@@ -26,15 +26,15 @@ import com.vidya.spectra.model.Image;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHolder> {
 
-    private List<Image> images;
-    private Context mContext;
+    private final List<Image> images;
+    private final Context mContext;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public ImageView thumbnail;
+    class MyViewHolder extends RecyclerView.ViewHolder {
+        final ImageView thumbnail;
 
-        public MyViewHolder(View view) {
+        MyViewHolder(View view) {
             super(view);
-            thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
+            thumbnail = view.findViewById(R.id.thumbnail);
         }
     }
 
@@ -48,8 +48,9 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
         this.images = images;
     }
 
+    @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.gallery_thumbnail, parent, false);
         MyViewHolder holder = new MyViewHolder(itemView);
@@ -58,14 +59,14 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
         Image image = images.get(position);
-        RequestOptions requestOptions = new RequestOptions();
-        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
-        Glide.with(mContext).load(image.getUrl())
-                .thumbnail(0.5f)
-                .transition(new DrawableTransitionOptions().crossFade())
-                .apply(requestOptions)
+        //RequestOptions requestOptions = new RequestOptions();
+        //requestOptions.placeholder(R.mipmap.ic_launcher);
+        Glide.with(mContext)
+                //.setDefaultRequestOptions(requestOptions)
+                .load(image.getUrl())
                 .into(holder.thumbnail);
     }
 
@@ -82,8 +83,8 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
 
     public static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 
-        private GestureDetector gestureDetector;
-        private GalleryAdapter.ClickListener clickListener;
+        private final GestureDetector gestureDetector;
+        private final GalleryAdapter.ClickListener clickListener;
 
         public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final GalleryAdapter.ClickListener clickListener) {
             this.clickListener = clickListener;
@@ -104,7 +105,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
         }
 
         @Override
-        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+        public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
 
             View child = rv.findChildViewUnder(e.getX(), e.getY());
             if (child != null && clickListener != null && gestureDetector.onTouchEvent(e)) {
@@ -114,7 +115,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
         }
 
         @Override
-        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+        public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
         }
 
         @Override

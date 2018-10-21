@@ -3,6 +3,7 @@ package com.vidya.spectra.activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,8 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.vidya.spectra.adapter.EventAdapter;
 import com.vidya.spectra.adapter.MainAdapter;
 import com.vidya.spectra.helper.SessionManager;
 import com.vidya.spectra.helper.SQLiteHandler;
@@ -36,7 +35,6 @@ public class MnActivity extends AppCompatActivity {
     private SQLiteHandler db;
     private SessionManager session;
 
-    private RecyclerView recyclerView;
     private MainAdapter adapter;
     private List<Event> eventList;
 
@@ -47,7 +45,6 @@ public class MnActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mn);
-
         //setting toolbar to WelcomeActivity
         android.support.v7.widget.Toolbar toolbar =  findViewById(R.id.toolbar_main);
         toolbar.setTitle(R.string.app_name);                            //setting Activity Name
@@ -80,12 +77,12 @@ public class MnActivity extends AppCompatActivity {
         navigationView.getMenu().getItem(0).setChecked(true);
 
         View headerLayout = navigationView.getHeaderView(0); // 0-index header
-        TextView nameView= (TextView)headerLayout.findViewById(R.id.nameView);
+        TextView nameView= headerLayout.findViewById(R.id.nameView);
         nameView.setText(name);
-        TextView studentIdView=(TextView)headerLayout.findViewById(R.id.student_id_nav_header);
+        TextView studentIdView= headerLayout.findViewById(R.id.student_id_nav_header);
         studentIdView.setText(student_id);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_main);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_main);
         eventList = new ArrayList<>();
         adapter = new MainAdapter(MnActivity.this,eventList);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this,1,LinearLayoutManager.HORIZONTAL,false);
@@ -94,7 +91,7 @@ public class MnActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         prepareAlbums();
 
-        Button membershipButton = (Button)findViewById(R.id.membership_button);
+        Button membershipButton = findViewById(R.id.membership_button);
         membershipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,7 +109,7 @@ public class MnActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                         // set item as selected to persist highlight
                         // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
@@ -197,11 +194,11 @@ public class MnActivity extends AppCompatActivity {
     /**
      * RecyclerView item decoration - give equal margin around grid item
      */
-    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
+    class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
-        private int spanCount;
-        private int spacing;
-        private boolean includeEdge;
+        private final int spanCount;
+        private final int spacing;
+        private final boolean includeEdge;
 
         public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
             this.spanCount = spanCount;
@@ -210,7 +207,7 @@ public class MnActivity extends AppCompatActivity {
         }
 
         @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
             int position = parent.getChildAdapterPosition(view); // item position
             int column = position % spanCount; // item column
 

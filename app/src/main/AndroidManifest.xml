@@ -20,6 +20,7 @@
             android:theme="@style/SplashTheme"
             android:screenOrientation="portrait">
             <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -40,7 +41,6 @@
 
         <!-- Register Activity -->
         <activity android:name=".activity.RegisterActivity"
-            android:theme="@style/popUpTheme"
             android:label="@string/register"
             android:screenOrientation="portrait"
             android:parentActivityName=".activity.WelActivity"/>

@@ -2,15 +2,11 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#002984</color>
-    <color name="colorPrimaryLight">#757de8</color>
     <color name="colorAccent">#d50000</color>
     <color name="colorAccentDark">#9b0000</color>
-    <color name="colorAccentLight">#ff5131</color>
     <color name="text_black">#000000</color>
     <color name="text_black_light">#2c2c2c</color>
     <color name="white_color">#FFFFFF</color>
     <color name="menu_item_color">#757575</color>
 
-    <color name="album_title">#4c4c4c</color>
-    <color name="viewBg">#f1f5f8</color>
 </resources>

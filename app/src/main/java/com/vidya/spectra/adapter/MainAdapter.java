@@ -1,6 +1,7 @@
 package com.vidya.spectra.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,17 +17,17 @@ import java.util.List;
 
 public class MainAdapter  extends RecyclerView.Adapter<MainAdapter.MyViewHolder> {
 
-    private Context mContext;
-    private List<Event> eventList;
+    private final Context mContext;
+    private final List<Event> eventList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title;
-        public ImageView thumbnail;
+        final TextView title;
+        final ImageView thumbnail;
 
-        public MyViewHolder(View view) {
+        MyViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.title_main);
-            thumbnail = (ImageView) view.findViewById(R.id.thumbnail_main);
+            title = view.findViewById(R.id.title_main);
+            thumbnail = view.findViewById(R.id.thumbnail_main);
         }
     }
 
@@ -36,8 +37,9 @@ public class MainAdapter  extends RecyclerView.Adapter<MainAdapter.MyViewHolder>
         this.eventList = eventList;
     }
 
+    @NonNull
     @Override
-    public MainAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MainAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.main_card, parent, false);
 
@@ -45,7 +47,7 @@ public class MainAdapter  extends RecyclerView.Adapter<MainAdapter.MyViewHolder>
     }
 
     @Override
-    public void onBindViewHolder(final MainAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MainAdapter.MyViewHolder holder, int position) {
         Event album = eventList.get(position);
         holder.title.setText(album.getName());
         // loading album cover using Glide library

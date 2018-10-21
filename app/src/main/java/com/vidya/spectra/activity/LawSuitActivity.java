@@ -1,7 +1,6 @@
 package com.vidya.spectra.activity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -19,8 +18,9 @@ public class LawSuitActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         if(getSupportActionBar()!=null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_up_button_24dp);
         }
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_up_button_24dp);
+
 
     }
 }

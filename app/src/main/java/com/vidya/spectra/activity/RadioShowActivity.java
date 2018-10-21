@@ -18,8 +18,9 @@ public class RadioShowActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
         if(getSupportActionBar()!=null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_up_button_24dp);
         }
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_up_button_24dp);
+
 
     }
 }

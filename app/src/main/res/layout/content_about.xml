@@ -1,7 +1,6 @@
 <android.support.v4.widget.NestedScrollView
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
@@ -31,7 +30,6 @@
     </android.support.v7.widget.CardView>
 
         <ImageView
-            android:id="@+id/image_about"
             android:contentDescription="@string/about_spectra"
             android:layout_width="360dp"
             android:layout_height="271dp"

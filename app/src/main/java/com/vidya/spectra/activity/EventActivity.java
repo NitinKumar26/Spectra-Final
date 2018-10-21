@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +16,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.vidya.spectra.R;
 
@@ -29,7 +29,6 @@ import java.util.List;
 
 public class EventActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
     private EventAdapter adapter;
     private List<Event> eventList;
     private Context mContext;
@@ -38,22 +37,23 @@ public class EventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_events);
+        Toolbar toolbar = findViewById(R.id.toolbar_events);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_up_button_24dp);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        if (getSupportActionBar()!=null) {
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_up_button_24dp);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         initCollapsingToolbar();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
         eventList = new ArrayList<>();
         adapter = new EventAdapter(this, eventList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
@@ -95,9 +95,9 @@ public class EventActivity extends AppCompatActivity {
      */
     private void initCollapsingToolbar() {
         final CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_events);
+                findViewById(R.id.collapsing_toolbar_events);
         collapsingToolbar.setTitle(" ");
-        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar_events);
+        AppBarLayout appBarLayout = findViewById(R.id.appbar_events);
         appBarLayout.setExpanded(true);
 
         // hiding & showing the title when toolbar expanded & collapsed
@@ -149,20 +149,20 @@ public class EventActivity extends AppCompatActivity {
     /**
      * RecyclerView item decoration - give equal margin around grid item
      */
-    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
+    class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
-        private int spanCount;
-        private int spacing;
-        private boolean includeEdge;
+        private final int spanCount;
+        private final int spacing;
+        private final boolean includeEdge;
 
-        public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
+        GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
             this.spanCount = spanCount;
             this.spacing = spacing;
             this.includeEdge = includeEdge;
         }
 
         @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
             int position = parent.getChildAdapterPosition(view); // item position
             int column = position % spanCount; // item column
 
@@ -187,8 +187,8 @@ public class EventActivity extends AppCompatActivity {
     /**
      * Converting dp to pixel
      */
-    private int dpToPx(int dp) {
+    private int dpToPx() {
         Resources r = getResources();
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, r.getDisplayMetrics()));
     }
 }
