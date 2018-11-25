@@ -13,10 +13,14 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.vidya.spectra.R;
 
 import com.bumptech.glide.Glide;
@@ -32,6 +36,7 @@ public class EventActivity extends AppCompatActivity {
     private EventAdapter adapter;
     private List<Event> eventList;
     private Context mContext;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +52,12 @@ public class EventActivity extends AppCompatActivity {
         initCollapsingToolbar();
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        // Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
+        MobileAds.initialize(this, "ca-app-pub-4214231949040116~6726627782");
 
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-4214231949040116/1429256349");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
         eventList = new ArrayList<>();
         adapter = new EventAdapter(this, eventList);
 
@@ -65,6 +75,7 @@ public class EventActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
         recyclerView.addOnItemTouchListener(new MyTouchListener(EventActivity.this, recyclerView, new MyTouchListener.OnTouchActionListener() {
 
             @Override
@@ -72,21 +83,43 @@ public class EventActivity extends AppCompatActivity {
 
                 if (position == 0) {
 
+                    if (mInterstitialAd.isLoaded()) {
+                        mInterstitialAd.show();
+                    } else {
+                        Log.d("TAG", "The interstitial wasn't loaded yet.");
+                    }
+
                     Intent intentDeclamation= new Intent(EventActivity.this, DeclamationActivity.class);
                     startActivity(intentDeclamation);
                 }else if (position==1){
+                    if (mInterstitialAd.isLoaded()) {
+                        mInterstitialAd.show();
+                    } else {
+                        Log.d("TAG", "The interstitial wasn't loaded yet.");
+                    }
                     Intent intentBoyGirl = new Intent(EventActivity.this, BoyGirlActivity.class);
                     startActivity(intentBoyGirl);
                 }else if (position==2){
+                    if (mInterstitialAd.isLoaded()) {
+                        mInterstitialAd.show();
+                    } else {
+                        Log.d("TAG", "The interstitial wasn't loaded yet.");
+                    }
                     Intent intentLawSuit = new Intent(EventActivity.this,LawSuitActivity.class);
                     startActivity(intentLawSuit);
                 }else{
+                    if (mInterstitialAd.isLoaded()) {
+                        mInterstitialAd.show();
+                    } else {
+                        Log.d("TAG", "The interstitial wasn't loaded yet.");
+                    }
                     Intent intentRadioShow = new Intent(EventActivity.this,RadioShowActivity.class);
                     startActivity(intentRadioShow);
                 }
 
             }
         }));
+
     }
 
     /**

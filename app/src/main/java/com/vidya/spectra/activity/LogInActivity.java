@@ -13,22 +13,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
 import com.vidya.spectra.R;
-import com.vidya.spectra.app.AppConfig;
-import com.vidya.spectra.app.AppController;
+import com.vidya.spectra.spectraApp.AppConfig;
+import com.vidya.spectra.spectraApp.AppController;
 import com.vidya.spectra.helper.SQLiteHandler;
 import com.vidya.spectra.helper.SessionManager;
 import com.vidya.spectra.helper.SSLException;
@@ -45,7 +43,6 @@ public class LogInActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-
         inputStudent_id = findViewById(R.id.student_id_login);
         inputPassword = findViewById(R.id.password_login);
         Button btnLogin = findViewById(R.id.button_login);
@@ -75,6 +72,15 @@ public class LogInActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
+            TextView resetPassword = findViewById(R.id.reset_password);
+            resetPassword.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent resetPasswordIntent = new Intent(LogInActivity.this, ResetPasswordActivity.class);
+                    startActivity(resetPasswordIntent);
+                    finish();
+                }
+            });
 
             // Login button Click Event
             btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -156,17 +162,18 @@ public class LogInActivity extends AppCompatActivity {
 
                         // Now store the user in SQLite
                         String uid = jObj.getString("uid");
-
                         JSONObject user = jObj.getJSONObject("user");
+                        String user_id = user.getString("user_id");
                         String student_id = user.getString("student_id");
                         String name = user.getString("name");
                         String email = user.getString("email");
                         String created_at = user.getString("created_at");
                         String course = user.getString("course");
+                        String paymentId = user.getString("payment_id");
                         String contact = user.getString("contact");
 
                         // Inserting row in users table
-                        db.addUser(student_id, name, email,course,contact, uid, created_at);
+                        db.addUser(student_id, name, email,course,contact, user_id, paymentId, created_at);
 
                         // Launch main activity
                         Intent intent = new Intent(LogInActivity.this,

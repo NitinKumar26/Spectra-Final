@@ -3,7 +3,9 @@ package com.vidya.spectra.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -59,5 +61,44 @@ public class EventAdapter  extends RecyclerView.Adapter<EventAdapter.MyViewHolde
     @Override
     public int getItemCount() {
         return eventList.size();
+    }
+
+
+    public interface ClickListener {
+        void onClick(int position);
+    }
+    public static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
+        private final GestureDetector gestureDetector;
+
+        private final EventAdapter.ClickListener clickListener;
+        public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final EventAdapter.ClickListener clickListener){
+            this.clickListener = clickListener;
+            gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener(){
+                @Override
+                public boolean onSingleTapUp(MotionEvent e) {
+                    return true;
+                }
+
+            });
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
+            View child = recyclerView.findChildViewUnder(motionEvent.getX(),motionEvent.getY());
+            if (child!=null && clickListener != null && gestureDetector.onTouchEvent(motionEvent)){
+                clickListener.onClick(recyclerView.getChildPosition(child));
+            }
+            return false;
+        }
+
+        @Override
+        public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
+
+        }
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean b) {
+
+        }
     }
 }

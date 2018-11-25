@@ -24,8 +24,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 import com.vidya.spectra.R;
-import com.vidya.spectra.app.AppConfig;
-import com.vidya.spectra.app.AppController;
+import com.vidya.spectra.spectraApp.AppConfig;
+import com.vidya.spectra.spectraApp.AppController;
 import com.vidya.spectra.helper.SQLiteHandler;
 import com.vidya.spectra.helper.SSLException;
 import com.vidya.spectra.helper.SessionManager;
@@ -36,6 +36,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText inputFullName;
     private EditText inputEmail;
     private EditText inputPassword;
+    private EditText inputContact;
+    private Spinner inputCourse;
     private ProgressDialog pDialog;
     private SQLiteHandler db;
 
@@ -50,8 +52,8 @@ public class RegisterActivity extends AppCompatActivity {
         inputPassword =  findViewById(R.id.input_password_register);
         Button btnRegister = findViewById(R.id.btnRegister);
         inputStudentID = findViewById(R.id.input_student_id_register);
-        final Spinner inputCourse =  findViewById(R.id.input_course);
-        final EditText inputContact = findViewById(R.id.input_contact);
+        inputCourse =  findViewById(R.id.input_course);
+        inputContact = findViewById(R.id.input_contact);
         LinearLayout noInternetRegister= findViewById(R.id.no_internet_register);
         RelativeLayout registerLayout= findViewById(R.id.register_layout);
 
@@ -90,11 +92,12 @@ public class RegisterActivity extends AppCompatActivity {
                 String course = inputCourse.getSelectedItem().toString().trim();
                 String contact = inputContact.getText().toString().trim();
 
-                if (!studentID.isEmpty() && !name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
+                if (!studentID.isEmpty() && !name.isEmpty() && !email.isEmpty() && !password.isEmpty() &&
+                        !course.isEmpty() && !contact.isEmpty()) {
 
                     if (isNetworkAvailable()) {
                         SSLException.disableSSLCertificateChecking();
-                        registerUser(studentID, name, email,course,contact, password);
+                        registerUser(studentID, name, email,  password, course, contact);
 
                     }else{
                         Toast.makeText(RegisterActivity.this, "Network Unavailable", Toast.LENGTH_SHORT).show();
@@ -149,20 +152,6 @@ public class RegisterActivity extends AppCompatActivity {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
                     if (!error) {
-                        // User successfully stored in MySQL
-                        // Now store the user in sqlite
-                        String uid = jObj.getString("uid");
-                        JSONObject user = jObj.getJSONObject("user");
-                        String studentID = user.getString("student_id");
-                        String name = user.getString("name");
-                        String email = user.getString("email");
-                        String course = user.getString("course");
-                        String contact = user.getString("contact");
-                        String created_at = user
-                                .getString("created_at");
-
-                        // Inserting row in users table
-                        db.addUser(studentID, name, email, course,contact, uid, created_at);
 
                         Toast.makeText(getApplicationContext(), "User successfully registered. Try login now!", Toast.LENGTH_LONG).show();
 
@@ -206,7 +195,6 @@ public class RegisterActivity extends AppCompatActivity {
                 params.put("password", password);
                 params.put("course",course);
                 params.put("contact",contact);
-
                 return params;
             }
 

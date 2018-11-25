@@ -1,4 +1,4 @@
-package com.vidya.spectra.app;
+package com.vidya.spectra.spectraApp;
 
 import android.app.Application;
 import android.text.TextUtils;

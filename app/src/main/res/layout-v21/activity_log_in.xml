@@ -75,6 +75,16 @@
             android:text="@string/submit"
             android:textColor="@color/white_color" />
 
+
+        <TextView
+            android:id="@+id/reset_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/button_login"
+            android:layout_margin="16dp"
+            android:text="@string/reset_password"/>
+
     </RelativeLayout>
 
     <LinearLayout

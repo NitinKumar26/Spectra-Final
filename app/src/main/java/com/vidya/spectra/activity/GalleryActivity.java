@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 import com.vidya.spectra.R;
 import com.vidya.spectra.adapter.GalleryAdapter;
-import com.vidya.spectra.app.AppController;
+import com.vidya.spectra.spectraApp.AppController;
 import com.vidya.spectra.model.Image;
 import com.vidya.spectra.helper.SSLException;
 

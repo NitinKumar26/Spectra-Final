@@ -29,7 +29,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     private static final String KEY_EMAIL = "email";
     private static final String KEY_COURSE = "course";
     private static final String KEY_CONTACT = "contact";
-    private static final String KEY_UID = "uid";
+    private static final String KEY_UID = "user_id";
+    private static final String KEY_PAYMENT_ID = "payment_id";
     private static final String KEY_CREATED_AT = "created_at";
 
     public SQLiteHandler(Context context) {
@@ -42,6 +43,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_USER + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT," + KEY_STUDENT_ID +" TEXT UNIQUE,"
                 + KEY_EMAIL + " TEXT UNIQUE," + KEY_COURSE + " TEXT,"+ KEY_CONTACT + " TEXT," + KEY_UID + " TEXT,"
+                + KEY_PAYMENT_ID + " TEXT,"
                 + KEY_CREATED_AT + " TEXT" + ")";
         db.execSQL(CREATE_LOGIN_TABLE);
 
@@ -61,7 +63,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     /**
      * Storing user details in database
      * */
-    public void addUser(String student_id, String name, String email, String course,String contact, String uid, String created_at) {
+    public void addUser(String student_id, String name,
+                        String email, String course,String contact,
+                        String uid,String payment_id,  String created_at) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -71,6 +75,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(KEY_COURSE,course);
         values.put(KEY_CONTACT,contact);
         values.put(KEY_UID, uid); // Email
+        values.put(KEY_PAYMENT_ID, payment_id);
         values.put(KEY_CREATED_AT, created_at); // Created At
 
         // Inserting Row
@@ -78,6 +83,14 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
 
         Log.d(TAG, "New user inserted into sqlite: " + id);
+    }
+
+    public void addPaymentID (String user_id, String payment_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_PAYMENT_ID, payment_id );
+        db.execSQL("UPDATE users SET payment_id= ? WHERE user_id = ?", new String[]{payment_id, user_id});
+        db.close();
     }
 
     /**
@@ -97,8 +110,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             user.put("email", cursor.getString(3));
             user.put("course",cursor.getString(4));
             user.put("contact",cursor.getString(5));
-            user.put("uid", cursor.getString(6));
-            user.put("created_at", cursor.getString(7));
+            user.put("user_id", cursor.getString(6));
+            user.put("payment_id", cursor.getString(7));
+            user.put("created_at", cursor.getString(8));
         }
         cursor.close();
         db.close();

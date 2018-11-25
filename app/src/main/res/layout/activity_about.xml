@@ -49,7 +49,7 @@
         android:layout_margin="16dp"
         android:clickable="true"
         android:focusable="true"
-        app:elevation="6dp"
+        app:elevation="10dp"
         app:srcCompat="@drawable/ic_facebook_logo"
         app:pressedTranslationZ="12dp"
         app:layout_anchor="@id/app_bar_layout"
